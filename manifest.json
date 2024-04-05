@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Video Opener",
+  "name": "Video Opener+ comment",
   "version": "1.0",
   "description": "Open a video in a new tab.",
   "permissions": ["activeTab", "scripting"],
