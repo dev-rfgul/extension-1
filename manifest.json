@@ -3,7 +3,7 @@
   "name": "Video Opener+ comment",
   "version": "1.0",
   "description": "Open a video in a new tab.",
-  "permissions": ["activeTab", "scripting"],
+  "permissions": ["activeTab","tabs", "scripting"],
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
@@ -16,6 +16,12 @@
     "16": "icon.png",
     "48": "icon.png",
     "128": "icon.png"
-  }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ]
 
 }

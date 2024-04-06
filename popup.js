@@ -1,34 +1,18 @@
-document.addEventListener("DOMContentLoaded", function () {
-  document.getElementById("openVideo").addEventListener("click", function () {
-    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-      chrome.scripting.executeScript({
-        target: { tabId: tabs[0].id },
-        func: () => {
-          document.querySelectorAll("#thumbnail > yt-image > img")[0].click();
 
-          var commentBtn = document.getElementById("comment");
 
-          commentBtn.addEventListener("click", function () {
-            console.log("comment button clicked");
-            var placeHolder = document.querySelector("#placeholder-area");
 
-            placeHolder.click();
-            placeHolder.focus();
-            placeHolder.execCommand("insertText", true, "hello");
-
-            var button = document.getElementById("submit-button");
-
-            if (button) {
-              button.click();
-            } else {
-              console.log("Button with ID 'submit-button' not found.");
-            }
-          });
-        },
-      });
-    });
+// Send message to content script
+chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+  chrome.tabs.sendMessage(tabs[0].id, { message: "startCommenting" }, function(response) {
+      // Handle response from content script, if necessary
+      console.log("Response from content script:", response);
   });
 });
+
+
+// document.addEventListener("DOMContentLoaded", function () {
+  
+// });
 
 // // click button id is submit-button
 // document.querySelector('#placeholder-area').focus()
